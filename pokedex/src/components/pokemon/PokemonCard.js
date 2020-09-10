@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from "styled-components"
+import {Link} from 'react-router-dom';
 
 const Sprite = styled.img`
   width: 5em;
@@ -16,6 +17,18 @@ const Card = styled.div`
   -website-user-select: none;
   user-select: none;
   -o-user-select: none;
+`;
+
+const StyleLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  &:focus;
+  &:hover;
+  &:visited;
+  &:link;
+  &:active {
+    text-decoration: none;
+  };
 `;
 
 export default class PokemonCard extends Component {
@@ -43,21 +56,23 @@ export default class PokemonCard extends Component {
 
     return (
       <div className="col-md3 col-sm-6 mb-5">
-        <Card className= "card">
-          <h5 className="card-header">{this.state.pokemonIndex}</h5>
-          <Sprite className="card-img-top rounded mx-auto mt-2"
-          onLoad={() => this.setState({imageLoading: false})}
-          onError={() => this.setState({toManyRequests: true})}
-          
-          src= {this.state.imageURL}>
+        <StyleLink to={`pokemon/${this.state.pokemonIndex}`}>
+          <Card className= "card">
+            <h5 className="card-header">{this.state.pokemonIndex}</h5>
+            <Sprite className="card-img-top rounded mx-auto mt-2"
+            onLoad={() => this.setState({imageLoading: false})}
+            onError={() => this.setState({toManyRequests: true})}
+            
+            src= {this.state.imageURL}>
 
-          </Sprite>
-          <div className="card-body mx-auto">
-            <h6 className="card-title">
-              {this.state.name.toLowerCase().split(' ').map(letter => letter.charAt(0).toUpperCase() + letter.substring(1)).join(' ')}
-            </h6>
-          </div>  
-        </Card>
+            </Sprite>
+            <div className="card-body mx-auto">
+              <h6 className="card-title">
+                {this.state.name.toLowerCase().split(' ').map(letter => letter.charAt(0).toUpperCase() + letter.substring(1)).join(' ')}
+              </h6>
+            </div>  
+          </Card>
+        </StyleLink>
       </div>
 
     )
