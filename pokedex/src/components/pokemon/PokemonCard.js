@@ -13,6 +13,7 @@ const Card = styled.div`
   &:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
+  background: #f0f0f0;
   -moz-user-select: none;
   -website-user-select: none;
   user-select: none;
@@ -58,7 +59,7 @@ export default class PokemonCard extends Component {
       <div className="col-md3 col-sm-6 mb-5">
         <StyleLink to={`pokemon/${this.state.pokemonIndex}`}>
           <Card className= "card">
-            <h5 className="card-header">{this.state.pokemonIndex}</h5>
+            <h5 className="card-header" style={{background: "#c04848"}} >{this.state.pokemonIndex}</h5>
             <Sprite className="card-img-top rounded mx-auto mt-2"
             onLoad={() => this.setState({imageLoading: false})}
             onError={() => this.setState({toManyRequests: true})}

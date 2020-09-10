@@ -6,7 +6,7 @@ import { ThemeConsumer } from 'styled-components';
 export default class PokemonList extends Component {
 
   state = {
-    url: 'https://pokeapi.co/api/v2/pokemon?limit=150',
+    url: 'https://pokeapi.co/api/v2/pokemon?limit=250',
     pokemon: null
   };
 
