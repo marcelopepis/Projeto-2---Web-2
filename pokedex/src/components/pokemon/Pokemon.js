@@ -1,6 +1,31 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 
+
+
+const type_colors = {
+  bug: 'B1C12e',
+  dark: '4f3a2d',
+  dragon: '755edf',
+  eletric: 'fcbc17',
+  fairy: 'f4b1f4',
+  fighting: '823551d',
+  fire: 'e73B0c',
+  flying: 'a3b3f7',
+  ghost: '6060b2',
+  grass: '74c236',
+  ground: 'd3b357',
+  ice: 'a3e7fd',
+  normal: 'c8c4bc',
+  poison: '934594',
+  psychic: 'ed4882',
+  rock: 'b9a156',
+  steel: 'b5b5c3',
+  water: '3295f6'
+};
+
+
+
 export default class Pokemon extends Component {
   state = {
     name: '',
@@ -18,7 +43,7 @@ export default class Pokemon extends Component {
     },
     height: "",
     weight: "",
-    eggGroup: "",
+    eggGroups: "",
     abilities: "",
     genderRationMale: "",
     genderRationFemale: "",
@@ -88,17 +113,74 @@ export default class Pokemon extends Component {
         }
       });
       
+      const femaleRate = res.data['gender_rate'];
+      const genderRationFemale = 12.5 * femaleRate;
 
+      const genderRationMale = 12.5 * (8 - femaleRate);
+
+      const catchRate = Math.round((100/255) * res.data['capture_rate']);
+
+      const eggGroups = res.data['egg_groups'].map(group => {
+        return group.name.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
+      }).join(", ");
+
+
+      const hatchSteps = (255 * (res.data['hatch_counter']) + 1);
+
+      this.setState({
+        description,
+        genderRationFemale,
+        genderRationMale,
+        catchRate,
+        eggGroups,
+        hatchSteps
+      })
 
     });
 
-    
+    this.setState({
+      imageURL,
+      pokemonIndex,
+      name,
+      types,
+      stats: {
+        hp,
+        attack,
+        defense,
+        specialAttack,
+        specialDefense,
+      },
+      height,
+      weight,
+      abilities,
+      evs
+    });    
 
   }
   render() {
     return (
-      <div>
-        
+      <div className="col">
+        <div className="card">
+          <div className="card-header">
+            <div className="row">
+              <div className="col-5">
+                <h5>
+                  {this.state.pokemonIndex}
+                </h5>
+              </div>
+              <div className="col-7">
+                <div className="float-right">
+                  {this.state.types.map(type => (
+                    <span key={type} className = "badge badge-primary badge-pill mr-1" style = {{backgroundColor: `#${type_colors[type]}`, color: "white"}}>
+                      
+                      {type.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

@@ -29,7 +29,7 @@ export default class PokemonList extends Component {
             ))}
           </div>
         ) : (
-          <h1>Crregando lista de Pokemons</h1>
+          <h1>Carregando lista de Pokemons</h1>
         )}
       </React.Fragment>
     )
