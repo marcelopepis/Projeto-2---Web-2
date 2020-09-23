@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-mongoose.connect('ongodb+srv://pokemon:mw3szGZ1jFSZD6Gm@pokemondb.guq4l.mongodb.net/pokemonUsers?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://pokemon:ye4gOwB5hIuN5Nzt@pokemondb.guq4l.mongodb.net/pokedex?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

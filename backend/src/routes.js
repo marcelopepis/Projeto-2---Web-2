@@ -1,10 +1,9 @@
 const express = require('express');
 const routes = express.Router();
+const SessionController = require('./controllers/SessionController');
 
 
-routes.post('/users', (req, res) => {
-  return res.json(req.body);
-});
+routes.post('/users', SessionController.store);
 
 
 module.exports = routes;
