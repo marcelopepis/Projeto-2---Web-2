@@ -5,5 +5,7 @@ const SessionController = require('./controllers/SessionController');
 
 routes.post('/sessions', SessionController.store);
 
+routes.get('/sessions', SessionController.findUser);
+
 
 module.exports = routes;

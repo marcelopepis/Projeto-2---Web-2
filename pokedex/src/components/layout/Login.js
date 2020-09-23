@@ -25,6 +25,28 @@ function Login({ history }) {
     history.push('/dashboard');
 
   }
+
+  async function userLogin(event) {
+    event.preventDefault();
+
+    const response = await api.get('/sessions', {
+      email,
+      password
+    });
+
+    const { _id } = response.data
+
+    console.log(response.data);
+
+    if(response.data._id) {
+      localStorage.setItem('user', _id);
+      history.push('/dashboard');
+    }else {
+      const {message} = response.data
+      console.log(message);
+    }
+
+  }
   
 
   return (
@@ -41,7 +63,7 @@ function Login({ history }) {
           <input type="password" id="password" value={password} onChange={event => setPassword(event.target.value)} placeholder="sua senha"/>
 
           <button className="btn" type="submit">Entrar</button>
-          <button className="btn" type="submit">Cadastrar</button>
+          <button className="btn" onClick={userLogin} type="submit">Cadastrar</button>
         </form>
 
       </div>
