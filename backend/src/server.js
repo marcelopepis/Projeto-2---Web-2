@@ -4,7 +4,10 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-mongoose.connect('ongodb+srv://pokemon:mw3szGZ1jFSZD6Gm@pokemondb.guq4l.mongodb.net/pokemonDB?retryWrites=true&w=majority')
+mongoose.connect('ongodb+srv://pokemon:mw3szGZ1jFSZD6Gm@pokemondb.guq4l.mongodb.net/pokemonUsers?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.use(express.json());
 app.use(routes);
