@@ -6,21 +6,16 @@ import NavBar from './components/layout/NavBar';
 import Dashboard from './components/layout/Dashboard';
 import Login from './components/layout/Login';
 import Pokemon from './components/pokemon/Pokemon';
+import Routes from './routes';
 
 function App() {
   return (
-    <Router>
       <div className="App">
         <NavBar></NavBar>
         <div className="container">
-          <Switch>
-            <Route extac path="/" component={Login} />
-            <Route extac path="/dashboard/" component={Dashboard}/>
-            <Route extac path="/pokemon/:pokemonIndex" component={Pokemon}/>
-          </Switch>
+          <Routes />
         </div>
       </div>
-    </Router>
   );
 }
 

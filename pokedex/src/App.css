@@ -1,8 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .App {
   padding-top: 4rem;
   min-height: 100vh;
   background: #484848;
+  
+  /*background-image: url('./assets/pokemonfundo.jpg');
+  background-size: cover;*/
+  -webkit-font-smoothing: antialiased !important;
 }
 
 

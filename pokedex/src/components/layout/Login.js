@@ -1,22 +1,42 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import './Login.css';
+import api from '../../services/api';
 
 import logo from '../../assets/logo_pokedex.png';
 
-export default class Login extends Component {
-  render() {
-    return (
-      <div className="containerLogin">
+
+
+function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function handleSubmit(event) {
+
+    event.preventDefault();
+    
+    const response = await api.post('/sessions', {
+      email,
+      password
+    });
+    const { _id } = response.data;
+
+    localStorage.setItem('user', _id);
+
+  }
+  
+
+  return (
+    <div className="containerLogin">
       <img src={logo} alt="PokeDex"/>
       <div className="content">
         <p>
-          Pokedex Online!
+          <strong>Pokedex Online!</strong>
         </p>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="email">E-MAIL *</label>
-          <input type="email" id="email" placeholder="seu e-mail"/>
+          <input type="email" id="email" value={email} onChange={event => setEmail(event.target.value)} placeholder="seu e-mail"/>
           <label htmlFor="password">Password *</label>
-          <input type="password" id="password" placeholder="sua senha"/>
+          <input type="password" id="password" value={password} onChange={event => setPassword(event.target.value)} placeholder="sua senha"/>
 
           <button className="btn" type="submit">Entrar</button>
           <button className="btn" type="submit">Cadastrar</button>
@@ -24,6 +44,7 @@ export default class Login extends Component {
 
       </div>
     </div>
-    )
-  }
-}
+  );
+};
+
+export default Login;
