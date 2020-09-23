@@ -15,8 +15,12 @@ module.exports = {
   },
 
   async findUser(req, res) {
-    const email = req.body.email;
-    const password = req.body.password;
+    const email = req.query.email;
+    const password = req.query.password;
+
+    console.log(email);
+    console.log(password);
+
     let user = await User.findOne({email, password});
 
     if(user != null) {

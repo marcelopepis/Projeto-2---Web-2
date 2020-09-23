@@ -28,11 +28,9 @@ function Login({ history }) {
 
   async function userLogin(event) {
     event.preventDefault();
-
-    const response = await api.get('/sessions', {
-      email,
-      password
-    });
+    console.log(email);
+    console.log(password);
+    const response = await api.get(`/sessions?email=${email}&password=${password}`);
 
     const { _id } = response.data
 
@@ -56,14 +54,14 @@ function Login({ history }) {
         <p>
           <strong>Pokedex Online!</strong>
         </p>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={userLogin}>
           <label htmlFor="email">E-MAIL *</label>
           <input type="email" id="email" value={email} onChange={event => setEmail(event.target.value)} placeholder="seu e-mail"/>
           <label htmlFor="password">Password *</label>
           <input type="password" id="password" value={password} onChange={event => setPassword(event.target.value)} placeholder="sua senha"/>
 
           <button className="btn" type="submit">Entrar</button>
-          <button className="btn" onClick={userLogin} type="submit">Cadastrar</button>
+          <button className="btn" onClick={handleSubmit} type="submit">Cadastrar</button>
         </form>
 
       </div>
