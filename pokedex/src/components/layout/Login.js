@@ -6,7 +6,7 @@ import logo from '../../assets/logo_pokedex.png';
 
 
 
-function Login() {
+function Login({ history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,6 +21,8 @@ function Login() {
     const { _id } = response.data;
 
     localStorage.setItem('user', _id);
+
+    history.push('/dashboard');
 
   }
   
