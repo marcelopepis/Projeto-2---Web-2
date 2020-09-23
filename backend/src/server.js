@@ -2,10 +2,13 @@ const express = require('express');
 const routes = require('./routes');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const secret = require("./secret.json");
+
+const urlConnection = secret.connectionString;
 
 const app = express();
 
-mongoose.connect('mongodb+srv://pokemon:ye4gOwB5hIuN5Nzt@pokemondb.guq4l.mongodb.net/pokedex?retryWrites=true&w=majority', {
+mongoose.connect(urlConnection, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
