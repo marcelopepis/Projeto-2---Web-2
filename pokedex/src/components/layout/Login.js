@@ -10,6 +10,8 @@ function Login({ history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  var classWarning = "warning_hide";
+
   async function handleSubmit(event) {
 
     event.preventDefault();
@@ -41,6 +43,8 @@ function Login({ history }) {
       history.push('/dashboard');
     }else {
       const {message} = response.data
+      classWarning = "warning_show";
+      console.log(classWarning);
       console.log(message);
     }
 
@@ -62,6 +66,7 @@ function Login({ history }) {
 
           <button className="btn" type="submit">Entrar</button>
           <button className="btn" onClick={handleSubmit} type="submit">Cadastrar</button>
+          <p className={classWarning}>Usuário ou senha incorreta</p>
         </form>
 
       </div>

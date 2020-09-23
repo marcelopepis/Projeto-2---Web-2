@@ -83,3 +83,11 @@ body, input, button {
 .content button.btn:hover {
   background: #78a8c0;
 }
+
+.warning_hide {
+  display: none;
+}
+
+.warning_show {
+  display: block;
+}
